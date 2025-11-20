@@ -18,6 +18,7 @@
         <div class="nav-links">
             <a href="#" onclick="showPage('landing')">Home</a>
             <a href="#" onclick="showPage('rewards')">Rewards</a>
+            <a id="nav-account-link" class="hidden" href="#" onclick="showPage('account')">Account</a>
             <button id="nav-login-btn" class="btn-secondary" onclick="showPage('login')">Sign In</button>
             <button id="nav-logout-btn" class="btn-secondary hidden" onclick="logout()">Sign Out</button>
         </div>
@@ -93,14 +94,39 @@
     <!-- Dashboard Page -->
     <section id="dashboard-page" class="page hidden">
         <div class="dashboard-header">
-            <div class="user-welcome">
+            <div class="user-greeting">
                 <h2>Hello, <span id="user-name">Traveler</span></h2>
                 <p>Member since 2023</p>
             </div>
-            <div class="points-card">
-                <span class="points-label">Current Balance</span>
-                <div class="points-value" id="user-points">0</div>
-                <span class="points-sub">Points</span>
+            <div class="dashboard-cards">
+                <div class="points-card">
+                    <span class="points-label">Current Balance</span>
+                    <div class="points-value" id="user-points">0</div>
+                    <span class="points-sub">Points</span>
+                </div>
+                <div class="badges-card-container">
+                    <div class="badges-row">
+                        <div class="badge-item">
+                            <div id="user-tier-badge" class="tier-badge-large">
+                                <img src="images/gold_badge.png" alt="Gold Badge" class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Gold Member</span>
+                        </div>
+                        <div class="badge-item">
+                            <div class="tier-badge-large early-adopter">
+                                <img src="images/early_adopter_badge.png" alt="Early Adopter" class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Early Adopter</span>
+                        </div>
+                        <div class="badge-item">
+                            <div class="tier-badge-large noels-top-user">
+                                <img src="images/noels_top_user_badge.png" alt="Noel's Top User"
+                                    class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Noel's Top User</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -119,6 +145,84 @@
             <h3>Redeem Rewards</h3>
             <div class="rewards-grid" id="rewards-list">
                 <!-- Rewards injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Account Page -->
+    <section id="account-page" class="page hidden">
+        <div class="dashboard-header">
+            <div class="user-greeting">
+                <h2>Hello, <span id="account-user-name">Traveler</span></h2>
+                <p>Member since 2023</p>
+            </div>
+            <div class="dashboard-cards">
+                <div class="points-card">
+                    <span class="points-label">Current Balance</span>
+                    <div class="points-value" id="account-user-points">0</div>
+                    <span class="points-sub">Points</span>
+                </div>
+                <div class="badges-card-container">
+                    <div class="badges-row">
+                        <div class="badge-item">
+                            <div id="account-tier-badge" class="tier-badge-large">
+                                <img src="images/gold_badge.png" alt="Gold Badge" class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Gold Member</span>
+                        </div>
+                        <div class="badge-item">
+                            <div class="tier-badge-large early-adopter">
+                                <img src="images/early_adopter_badge.png" alt="Early Adopter" class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Early Adopter</span>
+                        </div>
+                        <div class="badge-item">
+                            <div class="tier-badge-large noels-top-user">
+                                <img src="images/noels_top_user_badge.png" alt="Noel's Top User"
+                                    class="badge-icon-large">
+                            </div>
+                            <span class="badge-label">Noel's Top User</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-content">
+            <div class="account-section">
+                <h3>Account Information</h3>
+                <div class="account-info-grid">
+                    <div class="info-card">
+                        <h4>Email</h4>
+                        <p id="account-email">user@example.com</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Member Status</h4>
+                        <p id="account-status">Gold Member</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Points to Next Tier</h4>
+                        <p id="points-to-next-tier">3750 points</p>
+                    </div>
+                    <div class="info-card">
+                        <h4>Lifetime Points Earned</h4>
+                        <p id="lifetime-points">1250 points</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account-section">
+                <h3>Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <div class="activity-icon">✓</div>
+                        <div class="activity-details">
+                            <p class="activity-title">Joined Stay n Sleep Rewards</p>
+                            <p class="activity-date">November 2023</p>
+                        </div>
+                        <div class="activity-points">+500 pts</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
