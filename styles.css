@@ -348,7 +348,8 @@ body {
 }
 
 .reward-btn {
-    width: 100%: margin-top: 1rem;
+    width: 100%;
+    margin-top: 1rem;
     padding: 0.6rem;
     background: white;
     border: 1px solid var(--primary);

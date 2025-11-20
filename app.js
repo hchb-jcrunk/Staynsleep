@@ -57,18 +57,26 @@ function showPage(pageId) {
     if (pageId === 'rewards') {
         renderRewards('public-rewards-list');
     }
+
+    // Update account page if navigating there
+    if (pageId === 'account' && currentUser) {
+        updateAccountPage();
+    }
 }
 
 function updateNav() {
     const loginBtn = document.getElementById('nav-login-btn');
     const logoutBtn = document.getElementById('nav-logout-btn');
+    const accountLink = document.getElementById('nav-account-link');
 
     if (currentUser) {
         loginBtn.classList.add('hidden');
         logoutBtn.classList.remove('hidden');
+        accountLink.classList.remove('hidden');
     } else {
         loginBtn.classList.remove('hidden');
         logoutBtn.classList.add('hidden');
+        accountLink.classList.add('hidden');
     }
 }
 
@@ -103,13 +111,60 @@ function logout() {
 }
 
 // Dashboard
+function calculateTier(points) {
+    if (points >= 5000) return 'Platinum';
+    if (points >= 1000) return 'Gold';
+    return 'Member';
+}
+
 function updateDashboard() {
     if (!currentUser) return;
 
     document.getElementById('user-name').textContent = currentUser.name;
     document.getElementById('user-points').textContent = currentUser.points;
 
+    const tier = calculateTier(currentUser.points);
+    const tierBadge = document.getElementById('user-tier-badge');
+    if (tierBadge) {
+        const badgeText = tierBadge.querySelector('.badge-text');
+        if (badgeText) {
+            badgeText.textContent = tier;
+        }
+        tierBadge.className = `tier-badge ${tier.toLowerCase()}`;
+    }
+
     renderRewards('rewards-list');
+}
+
+function updateAccountPage() {
+    if (!currentUser) return;
+
+    document.getElementById('account-user-name').textContent = currentUser.name;
+    document.getElementById('account-user-points').textContent = currentUser.points;
+    document.getElementById('account-email').textContent = currentUser.email;
+
+    const tier = calculateTier(currentUser.points);
+    document.getElementById('account-status').textContent = `${tier} Member`;
+
+    const accountTierBadge = document.getElementById('account-tier-badge');
+    if (accountTierBadge) {
+        const badgeText = accountTierBadge.querySelector('.badge-text');
+        if (badgeText) {
+            badgeText.textContent = tier;
+        }
+        accountTierBadge.className = `tier-badge ${tier.toLowerCase()}`;
+    }
+
+    // Calculate points to next tier
+    let pointsToNext = 0;
+    if (currentUser.points < 1000) {
+        pointsToNext = 1000 - currentUser.points;
+    } else if (currentUser.points < 5000) {
+        pointsToNext = 5000 - currentUser.points;
+    }
+
+    document.getElementById('points-to-next-tier').textContent = pointsToNext > 0 ? `${pointsToNext} points` : 'Max Tier Reached!';
+    document.getElementById('lifetime-points').textContent = `${currentUser.points} points`;
 }
 
 function renderRewards(containerId) {
